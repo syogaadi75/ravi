@@ -1,23 +1,22 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import FirstStep from './components/FirstStep';
+import Hello from './components/Hello';
+import InsertName from './components/InsertName';
+import SecondStep from './components/SecondStep';
+import ThirdStep from './components/ThirdStep';
 
 function App() {
+  const [name, setName] = useState(false)
+  const [step, setStep] = useState(0)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <InsertName setName={setName} />
+      {name && (<Hello name={name} setStep={setStep} />)}
+      {step == 1 && (<FirstStep name={name} setStep={setStep} />)}
+      {step == 2 && (<SecondStep name={name} setStep={setStep} />)}
+      {step == 3 && (<ThirdStep name={name} setStep={setStep} />)}
     </div>
   );
 }
